@@ -93,7 +93,7 @@ class Informacionlaboral extends CActiveRecord
 			'ing_per_inf_lab' => 'Total Ingresos',
 			'act_ext_inf_lab' => 'Actividad Extra',
 			'mon_act_ext_inf_lab' => 'Monto Extra',
-			'tot_ing_per_inf_lab' => 'TOTAL INGRESOS (Ingr.Personal + Ingr. Extra)',
+			'tot_ing_per_inf_lab' => 'TOTAL INGRESOS',
 			'sec_tra_inf_lab' => 'Sector Laboral',
 			'esg_ali_inf_lab' => 'Alimentaci&oacute;n',
 			'esg_med_inf_lab' => 'Medicina',

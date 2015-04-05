@@ -81,6 +81,8 @@
                     						array('label'=>'Mision Social', 'visible'=>!Yii::app()->user->isGuest && Yii::app()->funcion->validarSession(array('Administrador')),'url'=>array('/misionsocial/admin')),
                     						array('label'=>'Ocupacion', 'url'=>array('/ocupacion/admin')),
                     						array('label'=>'Organizacion Social', 'url'=>array('/organizacionsocial/admin')),
+                    						array('label'=>'Postulacion', 'url'=>array('/postulacion/admin')),
+                    						array('label'=>'Estatus Vivienda', 'url'=>array('/estatusvivienda/admin')),
                     				)),
                     		
 

@@ -134,6 +134,40 @@ class DatosencuestadoController extends Controller
 		
 	}
 	
+	public function actionCedula()
+	{
+		if($_POST['ced_dp_enc']){
+			$strcedula = $_POST['ced_dp_enc'];
+			$cedula=explode('-', $strcedula);
+			$cedula[1]=(int)$cedula[1];
+			$persona= new tblsaime();
+			$datos=$persona->getPersona(strtoupper($cedula[0]),$cedula[1]);
+				
+			if(empty($datos)){
+				$datos = 0;
+	
+				echo CJSON::encode(array(
+						'datos'=>$datos,
+				));
+	
+			}else{
+				$datos->dtmnacimiento=$datos->dtmnacimiento;
+	
+				echo CJSON::encode(array(
+						'datos'=>$datos->attributes,
+				));
+			}
+		}
+	
+		else{
+			$datos = 0;
+			echo CJSON::encode(array(
+					'datos'=>$datos,
+			));
+		}
+	
+	}
+	
 	
 	
 	public function actionListarjefefamiliar()

@@ -10,6 +10,11 @@
  * @property integer $cod_dp_enc
  * @property integer $cod_user
  * @property string $fec_reg_asi_viv
+ * @property string $act_adj_ffm
+ * @property string $con_emi_ban
+ * @property string $jor_con_soc
+ * @property integer $cod_pos
+ * @property integer $cod_est_viv
  */
 class Asignacionvivienda extends CActiveRecord
 {
@@ -41,12 +46,13 @@ class Asignacionvivienda extends CActiveRecord
 		return array(
 			array('num_viv_asi_viv, cod_pro, cod_dp_enc, cod_user', 'required'),
 			array('num_viv_asi_viv, cod_dp_enc', 'unique'),
-			array('cod_pro, cod_dp_enc, cod_user', 'numerical', 'integerOnly'=>true),
+			array('cod_pro, cod_dp_enc, cod_user, cod_pos, cod_est_viv', 'numerical', 'integerOnly'=>true),
 			array('num_viv_asi_viv', 'length', 'max'=>10),
+			array('act_adj_ffm, con_emi_ban, jor_con_soc', 'length', 'max'=>1),
 			array('fec_reg_asi_viv', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('cod_asi_viv, num_viv_asi_viv, cod_pro, cod_dp_enc, cod_user, fec_reg_asi_viv', 'safe', 'on'=>'search'),
+			array('cod_asi_viv, num_viv_asi_viv, cod_pro, cod_dp_enc, cod_user, fec_reg_asi_viv, act_adj_ffm, con_emi_ban, jor_con_soc, cod_pos, cod_est_viv', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,6 +67,8 @@ class Asignacionvivienda extends CActiveRecord
 				'jefe'=>array(self::HAS_MANY, 'Datosencuestado', 'cod_dp_enc'),
 				'proyecto' => array(self::BELONGS_TO, 'Proyecto', 'cod_pro'),
 				'persona' => array(self::BELONGS_TO, 'Datosencuestado', 'cod_dp_enc'),
+				'estatus' => array(self::BELONGS_TO, 'EstatusVivienda', 'cod_est_viv'),
+				'postulacion' => array(self::BELONGS_TO, 'Postulacion', 'cod_pos'),
 		);
 	}
 
@@ -76,6 +84,11 @@ class Asignacionvivienda extends CActiveRecord
 			'cod_dp_enc' => 'Beneficiario',
 			'cod_user' => 'Usuario de Registro',
 			'fec_reg_asi_viv' => 'Fecha de Registro',
+			'act_adj_ffm' => '¿Acta de adjudicación provisional por el FFM?',
+			'con_emi_ban' => '¿Contrato emitido por BANAVIH?',
+			'jor_con_soc' => '¿Participó en la Jornada Conciencia del Deber Social?',
+			'cod_pos' => 'Postulación',
+			'cod_est_viv' => 'Estatus de Vivienda',
 		);
 	}
 
@@ -96,6 +109,11 @@ class Asignacionvivienda extends CActiveRecord
 		$criteria->compare('cod_dp_enc',$this->cod_dp_enc);
 		$criteria->compare('cod_user',$this->cod_user);
 		$criteria->compare('fec_reg_asi_viv',$this->fec_reg_asi_viv,true);
+		$criteria->compare('act_adj_ffm',$this->act_adj_ffm,true);
+		$criteria->compare('con_emi_ban',$this->con_emi_ban,true);
+		$criteria->compare('jor_con_soc',$this->jor_con_soc,true);
+		$criteria->compare('cod_pos',$this->cod_pos);
+		$criteria->compare('cod_est_viv',$this->cod_est_viv);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

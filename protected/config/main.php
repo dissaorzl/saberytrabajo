@@ -164,10 +164,18 @@ return array(
 		'db'=>array(
 			'connectionString' => 'pgsql:host=localhost;port=5432;dbname=db_web_sab_tra;',
 			'emulatePrepare' => false,
-			'enableParamLogging' => true,
 			'username' => 'postgres',
 			'password' => 's13rr4m43str4',
 			'charset' => 'utf8',
+		),
+			
+		'bd_saime'=>array(
+				'class'=>'CDbConnection',
+				'connectionString' => 'pgsql:host=localhost;port=5432;dbname=bd_saime',
+				'emulatePrepare' => false,
+				'username' => 'postgres',
+				'password' => 's13rr4m43str4',
+				'charset' => 'utf8',
 		),
 		
 		'errorHandler'=>array(

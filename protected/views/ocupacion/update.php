@@ -3,19 +3,18 @@
 /* @var $model Ocupacion */
 
 $this->breadcrumbs=array(
-	'Ocupacions'=>array('index'),
+	'Ocupacion'=>array('admin'),
 	$model->cod_ocu=>array('view','id'=>$model->cod_ocu),
-	'Update',
+	'Actualizar',
 );
 
 $this->menu=array(
-	array('label'=>'List Ocupacion', 'url'=>array('index')),
-	array('label'=>'Create Ocupacion', 'url'=>array('create')),
-	array('label'=>'View Ocupacion', 'url'=>array('view', 'id'=>$model->cod_ocu)),
-	array('label'=>'Manage Ocupacion', 'url'=>array('admin')),
+	array('label'=>'Crear Ocupación', 'url'=>array('create')),
+	array('label'=>'Ver Ocupación', 'url'=>array('view', 'id'=>$model->cod_ocu)),
+	array('label'=>'Volver', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Ocupacion <?php echo $model->cod_ocu; ?></h1>
+<h1>Actualizar Ocupación <?php echo $model->cod_ocu; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

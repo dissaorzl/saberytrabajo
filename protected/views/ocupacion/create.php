@@ -3,16 +3,15 @@
 /* @var $model Ocupacion */
 
 $this->breadcrumbs=array(
-	'Ocupacions'=>array('index'),
-	'Create',
+	'Ocupacion'=>array('admin'),
+	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'List Ocupacion', 'url'=>array('index')),
-	array('label'=>'Manage Ocupacion', 'url'=>array('admin')),
+	array('label'=>'Volver', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Ocupacion</h1>
+<h1>Crear Ocupación</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

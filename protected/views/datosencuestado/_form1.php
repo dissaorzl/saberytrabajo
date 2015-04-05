@@ -14,9 +14,7 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="row">
-		
 			
-				
 		<fieldset><LEGEND align="left">Características de la Vivienda</LEGEND>	
 			<div class="row">
 					<input type="hidden" name="action" value="DV" />

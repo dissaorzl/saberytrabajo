@@ -176,6 +176,20 @@ Yii::app()->clientScript->registerScript('form_familiar', "
 					break;
 				}
 			break;
+			case 'Informacionlaboral_tra_act_inf_lab':
+				
+				switch(_valor)
+				{
+					case 'S':
+						bloquearDesbloquear('D','Informacionlaboral_sec_tra_inf_lab');
+						bloquearDesbloquear('D','Informacionlaboral_tip_ins_inf_lab');
+					break;
+					case 'N':
+						bloquearDesbloquear('B','Informacionlaboral_sec_tra_inf_lab');
+						bloquearDesbloquear('B','Informacionlaboral_tip_ins_inf_lab');
+					break;
+				}
+			break;
 			case 'Situacionpolitica_reg_ele_sit_pol':
 				
 				switch(_valor)

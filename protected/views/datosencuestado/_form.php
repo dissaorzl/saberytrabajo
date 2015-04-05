@@ -182,13 +182,48 @@
 			<div class="row">
 				<div class="span3">
 					<?php echo $form->labelEx($model,'ced_dp_enc'); ?>
-					<?php echo CHtml::dropDownList('Datosencuestado[nac_dp_enc]', $model, 
-              				array('V' => 'V', 'E' => 'E'),
-							array('class'=>'slt_opc_campos'));
+					<?php $this->widget('CMaskedTextField', array(
+						'model' => $model,
+						'attribute' => 'ced_dp_enc',
+						'mask' => 'a-99999999',
+						'charMap'=>array('a'=>'[V E]', '9'=>'[0 1 2 3 4 5 6 7 8 9]'),
+						'htmlOptions'  => array('size' => 11, 'id'=>'ced_dp_enc', 'placeholder'=>'Cédula', 'readonly'=>$model->isNewRecord ? false : 'readonly', 'class'=>'form-control')
+					));
 					?>
-					<?php echo $form->textField($model,'ced_dp_enc',array('style'=>'width:160px;')); ?>
+					<span class="note2"><br>Ejemplo: V-05678766, E-88976567</span>
 					<?php echo $form->error($model,'ced_dp_enc'); ?>
 				</div>
+				
+				<script>
+				    $('#ced_dp_enc').on('blur', function(){
+				                $.ajax({
+				                url: <?php echo "'".CController::createUrl('datosencuestado/cedula')."'"; ?>,
+				                data: {'ced_dp_enc' : $('#ced_dp_enc').val()},
+				                type: "post",
+				                success: function(data){
+				                               if (data.datos == 0){
+				                                        console.log("La persona no esta registrada en el Saime");}
+				                                else
+				                                {
+					                               var array = JSON.parse(data);
+					                               
+					                                Datosencuestado_pri_nom_dp_enc.value = array.datos.strnombre_primer;
+					                                $("#Datosencuestado_pri_nom_dp_enc").attr('readonly', 'readonly');
+					                                Datosencuestado_seg_nom_dp_enc.value = array.datos.strnombre_segundo;
+					                                $("#Datosencuestado_seg_nom_dp_enc").attr('readonly', 'readonly');
+					                                Datosencuestado_pri_ape_dp_enc.value = array.datos.strapellido_primer;
+					                                $("#Datosencuestado_pri_ape_dp_enc").attr('readonly', 'readonly');
+					                                Datosencuestado_seg_ape_dp_enc.value = array.datos.strapellido_segundo;
+					                                $("#Datosencuestado_seg_ape_dp_enc").attr('readonly', 'readonly');
+					                                Datosencuestado_fec_nac_dp_enc.value =array.datos.dtmnacimiento;
+					                                $("#Datosencuestado_fec_nac_dp_enc").attr('readonly', 'readonly');
+				                                }
+				                        }
+				                });
+	
+			        })
+				</script>
+			
 				<div class="span3">
 					<?php echo $form->labelEx($model,'pri_nom_dp_enc'); ?>
 					<?php echo $form->textField($model,'pri_nom_dp_enc',array('size'=>40,'maxlength'=>40)); ?>
